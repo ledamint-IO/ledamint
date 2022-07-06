@@ -68,6 +68,18 @@ const UserActions = (props: { mobile?: boolean; onClick?: any }) => {
                 Sell
               </Button>
             </Link>
+            {canCreate && (
+              <Link to={`/profile`} style={{display:'none'}}>
+                <Button
+                  onClick={() => {
+                    props.onClick ? props.onClick() : null;
+                  }}
+                  className="black-btn"
+                >
+                  Edit profile
+                </Button>
+              </Link>
+            )}
           </div>
         ) : (
           <div
@@ -90,6 +102,19 @@ const UserActions = (props: { mobile?: boolean; onClick?: any }) => {
                 Sell
               </Button>
             </Link>
+            {canCreate && (
+              <Link to={`/profile`} style={{ width: '100%',display:'none' }}>
+                <Button
+                  onClick={() => {
+                    props.onClick ? props.onClick() : null;
+                  }}
+                  className="metaplex-button-default"
+                  style={btnStyle}
+                >
+                  Edit profile
+                </Button>
+              </Link>
+            )}
           </div>
         ))}
     </>
@@ -268,28 +293,28 @@ export const CurrentUserBadge = (props: {
                     marginBottom: 10,
                   }}
                 >
-                  <div style={{display:'flex'}}>
-                  <TokenCircle
-                    iconFile={solMintInfo ? 'https://raw.githubusercontent.com/Fair-Exchange/safecoinwiki/master/Logos/SafeCoin/SafeCoin_Icon_monochrome.svg' : ''}
-                  />
-                  &nbsp;
-                  <span
-                    style={{
-                      fontWeight: 600,
-                      color: '#000000',
-                    }}
-                  >
-                    {formatNumber.format(balance)} SAFE
-                  </span>
-                  &nbsp;
-                  <span
-                    style={{
-                      color: 'rgba(0, 0, 0, 0.5)',
-                    }}
-                  >
-                    {formatUSD.format(balanceInUSD)}
-                  </span>
-                  &nbsp;
+                  <div style={{ display: 'flex' }}>
+                    <TokenCircle
+                      iconFile={solMintInfo ? 'https://raw.githubusercontent.com/Fair-Exchange/safecoinwiki/master/Logos/SafeCoin/SafeCoin_Icon_monochrome.svg' : ''}
+                    />
+                    &nbsp;
+                    <span
+                      style={{
+                        fontWeight: 600,
+                        color: '#000000',
+                      }}
+                    >
+                      {formatNumber.format(balance)} SAFE
+                    </span>
+                    &nbsp;
+                    <span
+                      style={{
+                        color: 'rgba(0, 0, 0, 0.5)',
+                      }}
+                    >
+                      {formatUSD.format(balanceInUSD)}
+                    </span>
+                    &nbsp;
                   </div>
                 </div>
                 <div
@@ -309,12 +334,12 @@ export const CurrentUserBadge = (props: {
                 </div>
                 <UserActions />
                 <Button
-                    className="metaplex-button-default"
-                    onClick={disconnect}
-                    style={btnStyle}
-                  >
-                    Disconnect
-                  </Button>
+                  className="metaplex-button-default"
+                  onClick={disconnect}
+                  style={btnStyle}
+                >
+                  Disconnect
+                </Button>
               </div>
             }
           />
@@ -397,9 +422,8 @@ export const Cog = () => {
                 // works: https://localhost/#/?network=devnet
                 const windowHash = window.location.hash;
                 routerSearchParams.set('network', network);
-                const nextLocationHash = `${
-                  windowHash.split('?')[0]
-                }?${routerSearchParams.toString()}`;
+                const nextLocationHash = `${windowHash.split('?')[0]
+                  }?${routerSearchParams.toString()}`;
                 window.location.hash = nextLocationHash;
                 window.location.reload();
               }}

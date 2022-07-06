@@ -19,6 +19,7 @@ import { PackCreateView } from './views/packCreate';
 import { BillingView } from './views/auction/billing';
 import { CollectionsView } from './views/collections';
 import { CollectionDetailView } from './views/collections/collectionDetail';
+import { ProfileView } from './views/profile';
 
 export function Routes() {
   const shouldEnableNftPacks = process.env.NEXT_ENABLE_NFT_PACKS === 'true';
@@ -51,6 +52,11 @@ export function Routes() {
               exact
               path="/art/create/:step_param?"
               component={() => <ArtCreateView />}
+            />
+            <Route
+              exact
+              path="/profile"
+              component={() => <ProfileView />}
             />
             <Route
               exact
