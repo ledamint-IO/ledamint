@@ -9,16 +9,45 @@ import { Button, Input, Layout, Modal, Form, Spin } from 'antd';
 
 export const ProfileView = () => {
   const { id } = useParams<{ id: string }>();
-  const creator = useCreator(id);
+
   const artwork = useCreatorArts(id);
   const wallet = useWallet();
+  const creator = useCreator(wallet.publicKey?.toBase58());
   const walletPubkey = wallet.publicKey?.toBase58() || '';
 
-  const [userName, setUsername] = useState('');
+  const [userName, setUsername] = useState('null');
+  const [avatar, setAvatar] = useState('null');
+  const [description, setDescription] = useState('null');
+  const [background, setBackground] = useState('null');
 
+  console.log("creator ", creator)
+  console.log("id ", id)
   function submitUsername() {
     // post
-      // will include publickey & username
+    // will include publickey & username
+    const data = {
+      address: walletPubkey,
+      name: userName,
+      image: avatar,
+      description: description,
+      background: background
+
+    };
+    console.log('submit');
+    console.log(userName);
+    console.log("DATA : ", data)
+    fetch('http://127.0.0.1:5000/', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then(res => res.json())
+      .then(res => console.log(res));
+
+
+    console.log("new username ", userName)
   }
 
   const artworkGrid = (
@@ -62,15 +91,16 @@ export const ProfileView = () => {
             <div>username: </div>
             <br />
             <Input
-              value={walletPubkey.toString()}
-              placeholder={'Wallet address'}
+              //value={creator?.info.name || creator?.info.address}
+              placeholder={creator?.info.name || creator?.info.address}
               onChange={val => setUsername(val.target.value)}
             />
             <Button
-              className="type-btn"
+              // className="type-btn"
               size="large"
+
               onClick={() => submitUsername()}
-            ></Button>
+            >Save</Button>
             {/*<div className="info-header">Art Created</div>*/}
             {/*artworkGrid*/}
           </Col>

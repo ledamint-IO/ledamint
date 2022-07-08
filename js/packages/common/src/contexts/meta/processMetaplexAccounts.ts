@@ -161,33 +161,38 @@ export const processMetaplexAccounts: ProcessAccountsFunc = async (
         WhitelistedCreatorParser,
         false,
       ) as ParsedAccount<WhitelistedCreator>;
-    /*  const nameExt = async () => {
+      const nameExt = async () => {
         try {
-          const response = await fetch('https://raw.githubusercontent.com/araviel-io/CodeSnippets/main/userNames.json',
+          const response = await fetch('https://bridge.ledamint.io/',
           {
-            mode: 'cors',
+          //  mode: 'no-cors',
             headers: {
-              'Access-Control-Allow-Origin':'*'
+              //'Access-Control-Allow-Origin':'*',
+              'Content-Type': 'application/json',
             }
           }
           );
+          console.log("response ", response)
           const responseJson = await response.json();
-          return responseJson.movies;
+          console.log("responseJson ", responseJson)
+          return responseJson;
         } catch (error) {
           console.error(error);
         }
         
-      }*/
+      }
+      
       // TODO: figure out a way to avoid generating creator addresses during parsing
       // should we store store id inside creator?
-      //console.log("nameExt : ", await nameExt())
+      console.log("nameExt : ", await nameExt())
+      const namesV2 = await nameExt();
       if (STORE_ID) {
         const isWhitelistedCreator = await isCreatorPartOfTheStore(
           parsedAccount.info.address,
           pubkey,
         );
-        const nameInfo = (names as any)[parsedAccount.info.address];
-          console.log("names local : ", names)
+        const nameInfo = (namesV2 as any)[parsedAccount.info.address];
+          console.log("names local : ", namesV2)
         if (nameInfo) {
           parsedAccount.info = { ...parsedAccount.info, ...nameInfo };
         }
