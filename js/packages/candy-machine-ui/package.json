@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@babel/runtime": "^7.15.5",
-    "@j0nnyboi/safecoin-gateway-react": "^0.4.13",
+    "@j0nnyboi/safecoin-gateway-react": "^0.7.6",
     "@j0nnyboi/safecoin-gateway-ts": "^0.8.1",
     "@material-ui/core": "^4.12.3",
     "@material-ui/icons": "^4.11.2",
