@@ -72,40 +72,58 @@ export const ProfileView = () => {
 
   return (
     <>
-      <Col>
-        <Divider />
-        <Row
-          style={{ margin: '0 30px', textAlign: 'left', fontSize: '1.4rem' }}
-        >
-          <Col span={24}>
-            <h2>
-              {walletPubkey}
-              {/* <MetaAvatar creators={creator ? [creator] : []} size={100} /> */}
-              {creator?.info.name || creator?.info.address}
-            </h2>
-            <br />
-            <div className="info-header">ABOUT THE CREATOR</div>
-            <div className="info-content">{creator?.info.description}</div>
-            <br />
-            <div className="info-header">Edit creator info</div>
-            <div>username: </div>
-            <br />
-            <Input
-              //value={creator?.info.name || creator?.info.address}
-              placeholder={creator?.info.name || creator?.info.address}
-              onChange={val => setUsername(val.target.value)}
-            />
-            <Button
-              // className="type-btn"
-              size="large"
-
-              onClick={() => submitUsername()}
-            >Save</Button>
-            {/*<div className="info-header">Art Created</div>*/}
-            {/*artworkGrid*/}
+      {wallet.connected ?
+        <>
+          <Col>
+            <Divider />
+            <Row
+              style={{ margin: '0 30px', textAlign: 'left', fontSize: '1.4rem' }}
+            >
+              <Col span={24}>
+                <div style={{ backgroundImage: `url(${creator?.info.background})`, height: 150, width: 'auto', borderRadius: 20, backgroundPosition: 'center' }}>
+                  <div style={{ backgroundColor: '#00000059', height: '100%', width: '100%', display:'flex',borderRadius: 20 }}>
+                    <div style={{
+                      alignSelf: 'center',
+                      margin: 'auto',
+                      display:'flex'
+                    }}>
+                      <img  style={{height:90, width:'auto', border:'8px solid #ffffff33', borderRadius:50}} src={creator?.info.image}></img>
+                      <div style={{alignSelf:'center', marginLeft:'25px', color:'white'}}>{creator?.info.name || creator?.info.address}</div>
+                    </div>
+                  </div>
+                </div>
+                <h2 style={{marginTop:20}}>
+                  Edit profile
+                  {/*walletPubkey*/}
+                  {/* <MetaAvatar creators={creator ? [creator] : []} size={100} /> */}
+                  {/*creator?.info.name || creator?.info.address*/}
+                </h2>
+                <br />
+                <div className="info-header">ABOUT THE CREATOR</div>
+                <div className="info-content">{creator?.info.description}</div>
+                <br />
+                <div className="info-header">Username</div>
+                
+                <br />
+                <Input
+                  //value={creator?.info.name || creator?.info.address}
+                  placeholder={creator?.info.name || creator?.info.address}
+                  onChange={val => setUsername(val.target.value)}
+                />
+                <Button
+                  // className="type-btn"
+                  size="large"
+                  onClick={() => submitUsername()}
+                >Apply changes</Button>
+                {/*<div className="info-header">Art Created</div>*/}
+                {/*artworkGrid*/}
+              </Col>
+            </Row>
           </Col>
-        </Row>
-      </Col>
+        </>
+        :
+        <><div>not connected</div></>
+      }
     </>
   );
 };
