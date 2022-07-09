@@ -23,7 +23,7 @@ import {
 import { AlertState, toDate, formatNumber, getAtaForMint } from './utils';
 import { MintCountdown } from './MintCountdown';
 import { MintButton } from './MintButton';
-import { GatewayProvider } from '@j0nnyboi/safecoin-gateway-react';
+import { GatewayProvider } from '@civic/safecoin-gateway-react';
 import { sendTransaction } from './connection';
 
 const ConnectButton = styled(WalletDialogButton)`
