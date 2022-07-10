@@ -42,3 +42,4 @@ js/packages/cli/test/assets
 js/packages/web/.env.production
 js/packages/common/src/config/userNames.json
 js/yarn.lock
+js/packages/candy-machine-ui/yarn.lock
