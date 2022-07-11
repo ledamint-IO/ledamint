@@ -12,7 +12,7 @@ import {
   FeeCalculator,
 } from '@safecoin/web3.js';
 
-import { WalletNotConnectedError } from '@j0nnyboi/wallet-adapter-base';
+import { WalletNotConnectedError } from '@araviel/wallet-adapter-base';
 
 interface BlockhashAndFeeCalculator {
   blockhash: Blockhash;

@@ -4,7 +4,7 @@ import { CandyMachineAccount } from './candy-machine';
 import { CircularProgress } from '@material-ui/core';
 import { GatewayStatus, useGateway } from '@j0nnyboi/safecoin-gateway-react';
 import { useEffect, useState, useRef } from 'react';
-import { useConnection, useWallet } from '@j0nnyboi/wallet-adapter-react';
+import { useConnection, useWallet } from '@araviel/wallet-adapter-react';
 import {
   findGatewayToken,
   getGatewayTokenAddressForOwnerAndGatekeeperNetwork,

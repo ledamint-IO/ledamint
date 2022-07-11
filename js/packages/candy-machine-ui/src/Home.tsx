@@ -8,8 +8,8 @@ import Alert from '@material-ui/lab/Alert';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { PublicKey, Transaction } from '@safecoin/web3.js';
-import { useWallet } from '@j0nnyboi/wallet-adapter-react';
-import { WalletDialogButton } from '@j0nnyboi/wallet-adapter-material-ui';
+import { useWallet } from '@araviel/wallet-adapter-react';
+import { WalletDialogButton } from '@araviel/wallet-adapter-material-ui';
 import {
   awaitTransactionSignatureConfirmation,
   CandyMachineAccount,
