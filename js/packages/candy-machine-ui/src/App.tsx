@@ -6,11 +6,9 @@ import { DEFAULT_TIMEOUT } from './connection';
 import { clusterApiUrl } from '@safecoin/web3.js';
 import { WalletAdapterNetwork } from '@j0nnyboi/wallet-adapter-base';
 import {
-  getPhantomWallet,
-  getSlopeWallet,
-  getSolflareWallet,
-  getSolletWallet,
-  getSolletExtensionWallet,
+
+  getSolletWallet
+
 } from '@j0nnyboi/wallet-adapter-wallets';
 
 import {

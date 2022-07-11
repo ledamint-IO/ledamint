@@ -4,7 +4,7 @@ import { MintLayout, TOKEN_PROGRAM_ID, Token } from '@safecoin/safe-token';
 import {
   SystemProgram,
   Transaction,
-  SYSVAR_SLOT_HASHES_PUBKEY,
+  PublicKey,
 } from '@safecoin/web3.js';
 import { sendTransactions, SequenceType } from './connection';
 
@@ -58,6 +58,10 @@ interface CandyMachineState {
   };
   retainAuthority: boolean;
 }
+
+export const SYSVAR_SLOT_HASHES_PUBKEY = new PublicKey(
+  'SysvarS1otHashes111111111111111111111111111',
+);
 
 export interface CandyMachineAccount {
   id: anchor.web3.PublicKey;

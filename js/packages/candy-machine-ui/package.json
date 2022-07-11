@@ -15,7 +15,7 @@
     "@j0nnyboi/wallet-adapter-material-ui": "^0.16.7",
     "@j0nnyboi/wallet-adapter-react": "^0.15.7",
     "@j0nnyboi/wallet-adapter-react-ui": "^0.9.8",
-    "@j0nnyboi/wallet-adapter-wallets": "^0.16.5",
+    "@j0nnyboi/wallet-adapter-wallets": "^0.16.7",
     "@safecoin/web3.js": "^1.29.4",
     "mime": "^3.0.0",
     "prop-types": "^15.7.2",
