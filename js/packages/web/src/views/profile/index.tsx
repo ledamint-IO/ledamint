@@ -20,9 +20,31 @@ export const ProfileView = () => {
   const [description, setDescription] = useState('null');
   const [background, setBackground] = useState('null');
 
+  const [changes, setChanges] = useState(false)
+  const [blocked, setBlocked] = useState(false)
+
   console.log("creator ", creator)
   console.log("id ", id)
-  function submitUsername() {
+
+  const isValidUrl = urlString => {
+    var urlPattern = new RegExp('^(https?:\\/\\/)?' + //  protocol
+      '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + //  domain name
+      '((\\d{1,3}\\.){3}\\d{1,3}))' + // validate OR ip (v4) address
+      '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // validate port and path
+      '(\\?[;&a-z\\d%_.~+=-]*)?' + // validate query string
+      '(\\#[-a-z\\d_]*)?$', 'i'); // validate fragment locator
+    if (!!urlPattern.test(urlString) === true || urlString.isEmpty) {
+      setBlocked(false);
+    }
+    if (urlString.isEmpty) {
+
+      setBlocked(false);
+    }
+    console.log("url test", urlString, blocked)
+    return !!urlPattern.test(urlString);
+  }
+
+  function submitChanges() {
     // post
     // will include publickey & username
     const data = {
@@ -47,7 +69,7 @@ export const ProfileView = () => {
       .then(res => console.log(res));
 
 
-    console.log("new username ", userName)
+    console.log("new username ", data)
   }
 
   const artworkGrid = (
@@ -78,7 +100,6 @@ export const ProfileView = () => {
             <Row
               style={{ margin: '0 30px', textAlign: 'left', fontSize: '1.4rem' }}
             >
-
               <Col span={24}>
                 <div style={{ backgroundImage: `url(${creator?.info.background})`, height: 150, width: 'auto', borderRadius: 20, backgroundPosition: 'center' }}>
                   <div style={{ backgroundColor: '#00000059', height: '100%', width: '100%', display: 'flex', borderRadius: 20 }}>
@@ -118,33 +139,57 @@ export const ProfileView = () => {
                     <Input
                       //value={creator?.info.name || creator?.info.address}
                       placeholder={creator?.info.name || creator?.info.address}
-                      onChange={val => setUsername(val.target.value)}
+                      onChange={val => { setUsername(val.target.value); setChanges(true); }}
                     />
                     <div className="info-header">ABOUT THE CREATOR</div>
                     <Input
                       //value={creator?.info.name || creator?.info.address}
                       placeholder={creator?.info.description}
-                      onChange={val => setUsername(val.target.value)}
+                      onChange={val => setDescription(val.target.value)}
                     />
                     <div className="info-header">Avatar URL</div>
                     <Input
                       //value={creator?.info.name || creator?.info.address}
                       placeholder={creator?.info.image}
-                      onChange={val => setUsername(val.target.value)}
+                      onChange={val => {
+                        isValidUrl(val.target.value) ? // fully valid
+                        setAvatar(val.target.value)
+                        :
+                        val.target.value === '' ? setBlocked(false) : setBlocked(true) // if value empty (backspace = unblock)
+                      }}
                     />
                     <div className="info-header">Cover URL</div>
                     <Input
                       //value={creator?.info.name || creator?.info.address}
                       placeholder={creator?.info.background}
-                      onChange={val => setUsername(val.target.value)}
+                      onChange={val => {
+                        isValidUrl(val.target.value) ? // fully valid
+                        setBackground(val.target.value)
+                        :
+                        val.target.value === '' ? setBlocked(false) : setBlocked(true) // if value empty (backspace = unblock)
+                      }}
                     />
                     <div style={{ display: 'flex', justifyContent: 'center', marginTop: 25 }}>
-                      <Button
-                        className="ant-btn ant-btn-primary ant-btn-lg action-btn"
-                        size="large"
-                        style={{ width: 250 }}
-                        onClick={() => submitUsername()}
-                      >Apply changes</Button>
+                      {changes && !blocked ? (
+                        <Button
+                          className="ant-btn ant-btn-primary ant-btn-lg action-btn"
+                          size="large"
+                          style={{ width: 250 }}
+                          onClick={() => submitChanges()}
+                        >Apply changes</Button>
+                      ) :
+                        (
+                          <Button
+                            className="ant-btn ant-btn-primary ant-btn-lg action-btn"
+                            size="large"
+                            style={{ width: 250 }}
+                            onClick={() => submitChanges()}
+                            disabled={true}
+                          >{blocked ? 'Invalid URL' : 'No changes'}</Button>
+                        )
+
+                      }
+
                     </div>
                     {/*<div className="info-header">Art Created</div>*/}
                     {/*artworkGrid*/}
