@@ -68,7 +68,7 @@ export const ProfileView = () => {
     console.log('submit');
     console.log(userName);
     console.log("DATA : ", data)
-    fetch('http://127.0.0.1:5000/', {
+    fetch('http://127.0.0.1:5000/update', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
