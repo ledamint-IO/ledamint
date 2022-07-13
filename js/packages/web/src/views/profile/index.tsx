@@ -1,6 +1,6 @@
 import { useWallet } from '@j0nnyboi/wallet-adapter-react';
 import { Col, Divider, Row } from 'antd';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { ArtCard } from '../../components/ArtCard';
 import { CardLoader } from '../../components/MyLoader';
@@ -15,17 +15,27 @@ export const ProfileView = () => {
   const creator = useCreator(wallet.publicKey?.toBase58());
   const walletPubkey = wallet.publicKey?.toBase58() || '';
 
-  const [userName, setUsername] = useState('null');
-  const [avatar, setAvatar] = useState('null');
-  const [description, setDescription] = useState('null');
-  const [background, setBackground] = useState('null');
+  const [userName, setUsername] = useState(creator?.info.name);
+  const [avatar, setAvatar] = useState(creator?.info.image);
+  const [description, setDescription] = useState(creator?.info.description);
+  const [background, setBackground] = useState(creator?.info.background);
 
   const [changes, setChanges] = useState(false)
   const [blocked, setBlocked] = useState(false)
 
+  // hook to fill initial values fetched 
+  useEffect(() => {
+    setUsername(creator?.info.name)
+    setAvatar(creator?.info.image)
+    setDescription(creator?.info.description)
+    setBackground(creator?.info.background)
+}, [])
+
+
   console.log("creator ", creator)
   console.log("id ", id)
-
+  console.log("description ", description)
+  console.log("avatar ", avatar)
   const isValidUrl = urlString => {
     var urlPattern = new RegExp('^(https?:\\/\\/)?' + //  protocol
       '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + //  domain name
@@ -145,7 +155,7 @@ export const ProfileView = () => {
                     <Input
                       //value={creator?.info.name || creator?.info.address}
                       placeholder={creator?.info.description}
-                      onChange={val => setDescription(val.target.value)}
+                      onChange={val => { setDescription(val.target.value); setChanges(true); }}
                     />
                     <div className="info-header">Avatar URL</div>
                     <Input
