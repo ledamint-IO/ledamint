@@ -86,7 +86,7 @@ export const ProfileView = () => {
 
     console.log("submitChanges DATA : ", data)
 
-    fetch('http://127.0.0.1:5000/update', {
+    fetch('https://bridge.ledamint.io/update', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',

@@ -163,7 +163,7 @@ export const processMetaplexAccounts: ProcessAccountsFunc = async (
       ) as ParsedAccount<WhitelistedCreator>;
       const nameExt = async () => {
         try {
-          const response = await fetch('https://bridge.ledamint.io/',
+          const response = await fetch('https://bridge.ledamint.io/update',
           {
           //  mode: 'no-cors',
             headers: {
