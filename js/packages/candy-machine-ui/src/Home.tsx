@@ -23,7 +23,7 @@ import {
 import { AlertState, toDate, formatNumber, getAtaForMint } from './utils';
 import { MintCountdown } from './MintCountdown';
 import { MintButton } from './MintButton';
-import { GatewayProvider } from '@j0nnyboi/safecoin-gateway-react';
+//import { GatewayProvider } from '@j0nnyboi/safecoin-gateway-react';
 import { sendTransaction } from './connection';
 
 const ConnectButton = styled(WalletDialogButton)`
@@ -500,7 +500,8 @@ const Home = (props: HomeProps) => {
                 candyMachine?.state.gatekeeper &&
                 wallet.publicKey &&
                 wallet.signTransaction ? (
-                  <GatewayProvider
+                  <>
+                 {/*  <GatewayProvider
                     wallet={{
                       publicKey:
                         wallet.publicKey ||
@@ -582,7 +583,8 @@ const Home = (props: HomeProps) => {
                       onMint={onMint}
                       isActive={isActive || (isPresale && isWhitelistUser)}
                     />
-                  </GatewayProvider>
+                  </GatewayProvider>*/}
+                 </>
                 ) : (
                   <MintButton
                     candyMachine={candyMachine}
