@@ -15,27 +15,46 @@ export const ProfileView = () => {
   const creator = useCreator(wallet.publicKey?.toBase58());
   const walletPubkey = wallet.publicKey?.toBase58() || '';
 
-  const [userName, setUsername] = useState(creator?.info.name);
-  const [avatar, setAvatar] = useState(creator?.info.image);
-  const [description, setDescription] = useState(creator?.info.description);
-  const [background, setBackground] = useState(creator?.info.background);
+  // every 4 below states are human edition, if 
+  //  there are empty use creator? instead, if creator?[x] empty
+  const [userName, setUsername] = useState('');
+  const [avatar, setAvatar] = useState('');
+  const [description, setDescription] = useState('');
+  const [background, setBackground] = useState('');
 
   const [changes, setChanges] = useState(false)
   const [blocked, setBlocked] = useState(false)
-
   // hook to fill initial values fetched 
-  useEffect(() => {
-    setUsername(creator?.info.name)
-    setAvatar(creator?.info.image)
-    setDescription(creator?.info.description)
-    setBackground(creator?.info.background)
-}, [])
 
+  const processUsername = () => {
+    var finalUsername = '';
+    if (userName === '') { // means user didn't edited, keep old if exist or put ''
+      finalUsername = creator?.info.name || '';
+    } else { finalUsername = userName; } // replace or initialize username
+    return finalUsername;
+  }
+  const processAvatar = () => {
+    var finalAvatar = '';
+    if (avatar === '') {
+      finalAvatar = creator?.info.image || '';
+    } else { finalAvatar = avatar; } 
+    return finalAvatar;
+  }
+  const processDesc = () => {
+    var finalDesc = '';
+    if (description === '') {
+      finalDesc = creator?.info.description || '';
+    } else { finalDesc = description; } 
+    return finalDesc;
+  }
+  const processBack = () => {
+    var finalBack = '';
+    if (background === '') {
+      finalBack = creator?.info.background || '';
+    } else { finalBack = background; } 
+    return finalBack;
+  }
 
-  console.log("creator ", creator)
-  console.log("id ", id)
-  console.log("description ", description)
-  console.log("avatar ", avatar)
   const isValidUrl = urlString => {
     var urlPattern = new RegExp('^(https?:\\/\\/)?' + //  protocol
       '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + //  domain name
@@ -59,15 +78,14 @@ export const ProfileView = () => {
     // will include publickey & username
     const data = {
       address: walletPubkey,
-      name: userName,
-      image: avatar,
-      description: description,
-      background: background
-
+      name: processUsername(),
+      image: processAvatar(),
+      description: processDesc(),
+      background: processBack()
     };
-    console.log('submit');
-    console.log(userName);
-    console.log("DATA : ", data)
+
+    console.log("submitChanges DATA : ", data)
+
     fetch('http://127.0.0.1:5000/update', {
       method: 'POST',
       headers: {
@@ -77,9 +95,6 @@ export const ProfileView = () => {
     })
       .then(res => res.json())
       .then(res => console.log(res));
-
-
-    console.log("new username ", data)
   }
 
   const artworkGrid = (
@@ -163,9 +178,9 @@ export const ProfileView = () => {
                       placeholder={creator?.info.image}
                       onChange={val => {
                         isValidUrl(val.target.value) ? // fully valid
-                        setAvatar(val.target.value)
-                        :
-                        val.target.value === '' ? setBlocked(false) : setBlocked(true) // if value empty (backspace = unblock)
+                          setAvatar(val.target.value)
+                          :
+                          val.target.value === '' ? setBlocked(false) : setBlocked(true) // if value empty (backspace = unblock)
                       }}
                     />
                     <div className="info-header">Cover URL</div>
@@ -174,9 +189,9 @@ export const ProfileView = () => {
                       placeholder={creator?.info.background}
                       onChange={val => {
                         isValidUrl(val.target.value) ? // fully valid
-                        setBackground(val.target.value)
-                        :
-                        val.target.value === '' ? setBlocked(false) : setBlocked(true) // if value empty (backspace = unblock)
+                          setBackground(val.target.value)
+                          :
+                          val.target.value === '' ? setBlocked(false) : setBlocked(true) // if value empty (backspace = unblock)
                       }}
                     />
                     <div style={{ display: 'flex', justifyContent: 'center', marginTop: 25 }}>
@@ -193,7 +208,7 @@ export const ProfileView = () => {
                             className="ant-btn ant-btn-primary ant-btn-lg action-btn"
                             size="large"
                             style={{ width: 250 }}
-                            onClick={() => submitChanges()}
+                            //onClick={() => submitChanges()}
                             disabled={true}
                           >{blocked ? 'Invalid URL' : 'No changes'}</Button>
                         )
