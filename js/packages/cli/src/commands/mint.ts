@@ -313,6 +313,10 @@ export async function mintV2(
   const metadataAddress = await getMetadata(mint.publicKey);
   const masterEdition = await getMasterEdition(mint.publicKey);
 
+  const SYSVAR_SLOT_HASHES_PUBKEY = new PublicKey(
+    'SysvarS1otHashes111111111111111111111111111',
+  );
+
   log.debug(
     'Remaining accounts: ',
     remainingAccounts.map(i => i.pubkey.toBase58()),
@@ -338,7 +342,7 @@ export async function mintV2(
         systemProgram: SystemProgram.programId,
         rent: anchor.web3.SYSVAR_RENT_PUBKEY,
         clock: anchor.web3.SYSVAR_CLOCK_PUBKEY,
-        recentBlockhashes: anchor.web3.SYSVAR_SLOT_HASHES_PUBKEY,
+        recentBlockhashes: SYSVAR_SLOT_HASHES_PUBKEY,
         instructionSysvarAccount: anchor.web3.SYSVAR_INSTRUCTIONS_PUBKEY,
       },
       remainingAccounts:

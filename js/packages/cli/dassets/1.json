@@ -1,16 +1,21 @@
 {
-  "name": "8",
+  "name": "2",
   "symbol": "",
-  "image": "7.png",
+  "image": "1.png",
   "properties": {
-    "files": [{ "uri": "7.png", "type": "image/png" }],
+    "files": [{ "uri": "1.png", "type": "image/png" }],
     "category": "image",
-    "creators": []
+    "creators": [
+      {
+        "address": "smdxEAsiqoyz1mYpZ8UDdzUbWSG8nnnbAp9gTF9HQWW",
+        "share": 100
+      }
+    ]
   },
   "description": "",
   "seller_fee_basis_points": 500,
   "attributes": [
-    { "trait_type": "background", "value": "green" },
+    { "trait_type": "background", "value": "light-blue" },
     { "trait_type": "eyes", "value": "star-eyes" },
     { "trait_type": "mouth", "value": "triangle-mouth" },
     { "trait_type": "face", "value": "teal-face" }

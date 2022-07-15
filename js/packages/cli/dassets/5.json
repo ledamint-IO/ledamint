@@ -5,7 +5,12 @@
   "properties": {
     "files": [{ "uri": "5.png", "type": "image/png" }],
     "category": "image",
-    "creators": []
+    "creators": [
+      {
+        "address": "smdxEAsiqoyz1mYpZ8UDdzUbWSG8nnnbAp9gTF9HQWW",
+        "share": 100
+      }
+    ]
   },
   "description": "",
   "seller_fee_basis_points": 500,
