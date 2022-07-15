@@ -8,8 +8,8 @@ import Alert from '@material-ui/lab/Alert';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { PublicKey, Transaction } from '@safecoin/web3.js';
-import { useWallet } from '@j0nnyboi/wallet-adapter-react';
-import { WalletDialogButton } from '@j0nnyboi/wallet-adapter-material-ui';
+import { useWallet } from '@araviel/wallet-adapter-react';
+import { WalletDialogButton } from '@araviel/wallet-adapter-material-ui';
 import {
   awaitTransactionSignatureConfirmation,
   CandyMachineAccount,
@@ -23,7 +23,7 @@ import {
 import { AlertState, toDate, formatNumber, getAtaForMint } from './utils';
 import { MintCountdown } from './MintCountdown';
 import { MintButton } from './MintButton';
-import { GatewayProvider } from '@j0nnyboi/safecoin-gateway-react';
+//import { GatewayProvider } from '@j0nnyboi/safecoin-gateway-react';
 import { sendTransaction } from './connection';
 
 const ConnectButton = styled(WalletDialogButton)`
@@ -500,7 +500,8 @@ const Home = (props: HomeProps) => {
                 candyMachine?.state.gatekeeper &&
                 wallet.publicKey &&
                 wallet.signTransaction ? (
-                  <GatewayProvider
+                  <>
+                 {/*  <GatewayProvider
                     wallet={{
                       publicKey:
                         wallet.publicKey ||
@@ -582,7 +583,8 @@ const Home = (props: HomeProps) => {
                       onMint={onMint}
                       isActive={isActive || (isPresale && isWhitelistUser)}
                     />
-                  </GatewayProvider>
+                  </GatewayProvider>*/}
+                 </>
                 ) : (
                   <MintButton
                     candyMachine={candyMachine}

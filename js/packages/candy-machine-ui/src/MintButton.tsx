@@ -2,9 +2,9 @@ import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 import { CandyMachineAccount } from './candy-machine';
 import { CircularProgress } from '@material-ui/core';
-import { GatewayStatus, useGateway } from '@j0nnyboi/safecoin-gateway-react';
+//import { GatewayStatus, useGateway } from '@j0nnyboi/safecoin-gateway-react';
 import { useEffect, useState, useRef } from 'react';
-import { useConnection, useWallet } from '@j0nnyboi/wallet-adapter-react';
+import { useConnection, useWallet } from '@araviel/wallet-adapter-react';
 import {
   findGatewayToken,
   getGatewayTokenAddressForOwnerAndGatekeeperNetwork,
@@ -39,7 +39,7 @@ export const MintButton = ({
   const wallet = useWallet();
   const connection = useConnection();
   const [verified, setVerified] = useState(false);
-  const { requestGatewayToken, gatewayStatus } = useGateway();
+ // const { requestGatewayToken, gatewayStatus } = useGateway();
   const [webSocketSubscriptionId, setWebSocketSubscriptionId] = useState(-1);
   const [clicked, setClicked] = useState(false);
 
@@ -79,7 +79,7 @@ export const MintButton = ({
     onMint,
     webSocketSubscriptionId,
   ]);
-
+/*
   const previousGatewayStatus = usePrevious(gatewayStatus);
   useEffect(() => {
     const fromStates = [
@@ -95,7 +95,7 @@ export const MintButton = ({
     }
     console.log('change: ', gatewayStatus);
   }, [setIsMinting, previousGatewayStatus, gatewayStatus]);
-
+*/
   return (
     <CTAButton
       disabled={isMinting || !isActive}
@@ -104,13 +104,13 @@ export const MintButton = ({
           const network =
             candyMachine.state.gatekeeper.gatekeeperNetwork.toBase58();
           if (network === 'ignREusXmGrscGNUesoU9mxfds9AiYTezUKex2PsZV6') {
-            if (gatewayStatus === GatewayStatus.ACTIVE) {
+           /* if (gatewayStatus === GatewayStatus.ACTIVE) {
               await onMint();
             } else {
               // setIsMinting(true);
               await requestGatewayToken();
               console.log('after: ', gatewayStatus);
-            }
+            }*/
           } else if (
             network === 'ttib7tuX8PTWPqFsmUFQTj78MbRhUmqxidJRDv4hRRE' ||
             network === 'tibePmPaoTgrs929rWpu755EXaxC7M3SthVCf6GzjZt'

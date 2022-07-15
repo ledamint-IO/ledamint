@@ -21,9 +21,9 @@ export async function nftStorageUpload(
   const client = nftStorageKey
     ? new NFTStorage({ token: nftStorageKey })
     : NFTStorageMetaplexor.withSecretKey(walletKeyPair.secretKey, {
-        safecoinCluster: env,
-        mintingAgent: 'metaplex/candy-machine-v2-cli',
-      });
+      solanaCluster: env,
+      mintingAgent: 'metaplex/candy-machine-v2-cli',
+    });
 
   async function uploadMedia(media) {
     try {
@@ -63,8 +63,8 @@ export async function nftStorageUpload(
     .replace('.', '')}`;
   const animationUrl = animation
     ? `${await uploadMedia(animation)}?ext=${path
-        .extname(animation)
-        .replace('.', '')}`
+      .extname(animation)
+      .replace('.', '')}`
     : undefined;
 
   const manifestJson = await setImageUrlManifest(

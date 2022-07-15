@@ -214,7 +214,7 @@ There are great tools that can make generative art for you. One of the open sour
     //@deprecated -> do not use - may be removed in a future release
     "creators": [
       {
-        "address": "xEtQ9Fpv62qdc1GYfpNReMasVTe9YW5bHJwfVKqo72u",
+        "address": "smdxEAsiqoyz1mYpZ8UDdzUbWSG8nnnbAp9gTF9HQWW",
         "share": 100
       }
     ]
