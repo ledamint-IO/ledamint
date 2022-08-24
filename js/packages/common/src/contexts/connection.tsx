@@ -62,7 +62,7 @@ export const ENDPOINTS: Array<Endpoint> = [
   },
 ];
 
-const DEFAULT_ENDPOINT = ENDPOINTS[2];
+const DEFAULT_ENDPOINT = ENDPOINTS[0];
 
 interface ConnectionConfig {
   connection: Connection;

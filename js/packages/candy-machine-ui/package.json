@@ -19,6 +19,7 @@
     "@material-ui/lab": "^4.0.0-alpha.60",
     "@safecoin/safe-token": "^0.1.7-b",
     "@safecoin/web3.js": "^1.29.4",
+    "husky": "^8.0.1",
     "mime": "^3.0.0",
     "prop-types": "^15.7.2",
     "react": "^18.2.0",

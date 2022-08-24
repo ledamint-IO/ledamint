@@ -107,14 +107,13 @@ export async function arweaveUpload(
   const metadataFile = result.messages?.find(
     m => m.filename === 'manifest.json',
   );
-  const imageFile = result.messages?.find(
-    m => m.filename === `${index}${imageExt}`,
-  );
+ // const imageFile = result.messages?.find(
+  //  m => m.filename === `${index}${imageExt}`,
+  //);
   if (metadataFile?.transactionId) {
-    const link = `https://arweave.net/${metadataFile.transactionId}`;
-    const imageLink = `https://arweave.net/${
-      imageFile.transactionId
-    }?ext=${imageExt.replace('.', '')}`;
+	const link =  metadataFile.AweaveURL
+    //const link = `https://arweave.net/${metadataFile.transactionId}`;
+    const imageLink = metadataFile.AweaveImageURL
     log.debug(`File uploaded: ${link}`);
     return [link, imageLink];
   } else {

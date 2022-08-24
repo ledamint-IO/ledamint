@@ -46,7 +46,7 @@ export const formatNumber = {
 };
 
 export const SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID =
-  new anchor.web3.PublicKey('ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL');
+  new anchor.web3.PublicKey('AToD9iqHSc2fhEP9Jp7UYA6mRjHQ4CTWyzCsw8X3tH7K');
 
 export const CIVIC = new anchor.web3.PublicKey(
   'GaTuzjFsXoet5QhfevPinStFok6wVksq72vVk6vib79x',
